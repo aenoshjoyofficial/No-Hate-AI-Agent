@@ -6,7 +6,9 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "cross-env GENKIT_ENV=dev node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "genkit": "genkit"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.8.1",
+    "cross-env": "^10.1.0",
     "typescript": "^5.9.3"
   }
 }

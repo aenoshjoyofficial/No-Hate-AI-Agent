@@ -38,18 +38,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.helloFlow = void 0;
 const genkit_1 = require("genkit");
-const google_genai_1 = require("@genkit-ai/google-genai");
 const z = __importStar(require("zod"));
+const google_genai_1 = require("@genkit-ai/google-genai");
 const express_1 = __importDefault(require("express"));
-const flow_1 = require("genkit/flow");
-(0, genkit_1.configure)({
+const ai = (0, genkit_1.genkit)({
     plugins: [
         (0, google_genai_1.googleAI)(),
     ],
-    logLevel: 'debug',
-    enableTracingAndMetrics: true,
 });
-exports.helloFlow = (0, genkit_1.defineFlow)({
+exports.helloFlow = ai.defineFlow({
     name: 'helloFlow',
     inputSchema: z.string(),
     outputSchema: z.string(),
@@ -61,7 +58,7 @@ app.use(express_1.default.json());
 app.post('/api/hello', async (req, res) => {
     const { name } = req.body;
     try {
-        const result = await (0, flow_1.run)(exports.helloFlow, name);
+        const result = await (0, exports.helloFlow)(name);
         res.json({ result });
     }
     catch (error) {
