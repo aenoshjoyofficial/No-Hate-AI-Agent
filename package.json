@@ -7,6 +7,10 @@
     "backend"
   ],
   "scripts": {
-    "build": "npm run build --workspace=frontend && npm run build --workspace=backend"
+    "build": "npm run build --workspace=frontend && npm run build --workspace=backend",
+    "genkit:dev": "cross-env GEMINI_API_KEY=AIzaSyCDI3QkFGMN3UQjm3MZ3BWlvptCWeZeCew npx genkit start -- node backend/dist/index.js"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
   }
 }
